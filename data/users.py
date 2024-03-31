@@ -5,7 +5,7 @@ from .db_session import SqlAlchemyBase
 
 class User(SqlAlchemyBase):
     __tablename__ = 'users'
-    news = orm.relationship("Jobs", back_populates='user')
+    jobs = orm.relationship("Jobs", back_populates='user')
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     surname = sqlalchemy.Column(sqlalchemy.String, nullable=True)

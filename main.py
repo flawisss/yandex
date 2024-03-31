@@ -12,21 +12,9 @@ def main():
     # app.run()
     db_sess = db_session.create_session()
 
-    captain = User(surname='Scott', name='Ridley', age=21, position='captain', speciality='research engineer',
-                   address='module_1', email='scott_chief@mars.org')
-    db_sess.add(captain)
-
-    cabin_boy = User(surname='Ohlopkov', name='Nikita', age=16, position='cleaner', speciality='general education',
-                     address='module_2', email='Ohlopkov228@gmail.com')
-    db_sess.add(cabin_boy)
-
-    pilot = User(surname='Kurlov', name='Artem', age=17, position='pilot', speciality='high education',
-                 address='module_2', email='secret_mail@mail.ru')
-    db_sess.add(pilot)
-
-    passenger = User(surname='Zharnikov', name='Fedor', age=17, position='passenger', speciality='idiot',
-                     address='module_3', email='iamFedya@gmail.com')
-    db_sess.add(passenger)
+    captain = db_sess.query(User).filter(User.position == 'captain').first()
+    job = Jobs(job='deployment of residential modules 1 and 2', work_size=15, collaborators='2, 3', is_finished=False)
+    captain.jobs.append(job)
 
     db_sess.commit()
 
